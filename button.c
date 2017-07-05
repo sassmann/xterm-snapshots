@@ -271,6 +271,9 @@ SendMousePosition(XtermWidget xw, XEvent *event)
 	    case ButtonPress:
 		/* FALLTHRU */
 	    case ButtonRelease:
+		/* do not pass left, middle mouse events to the application */
+		if (my_event->button == 1 || my_event->button == 2)
+			break;
 		EditorButton(xw, my_event);
 		result = True;
 		break;
